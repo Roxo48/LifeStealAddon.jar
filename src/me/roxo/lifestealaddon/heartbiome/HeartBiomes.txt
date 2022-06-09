@@ -1,0 +1,59 @@
+package me.roxo.lifestealaddon.heartbiome;
+
+import me.roxo.lifestealaddon.LifeStealAddon;
+import net.minecraft.core.IRegistry;
+import net.minecraft.core.IRegistryWritable;
+import net.minecraft.resources.MinecraftKey;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.dedicated.DedicatedServer;
+import net.minecraft.world.level.biome.BiomeBase;
+import net.minecraft.world.level.biome.BiomeSettingsGeneration;
+import net.minecraft.world.level.biome.BiomeSettingsMobs;
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
+
+import java.lang.reflect.Field;
+
+public class HeartBiomes {
+
+    private final LifeStealAddon plugin;
+
+
+
+
+    public HeartBiomes(LifeStealAddon plugin) {
+        this.plugin = plugin;
+    }
+
+
+    public void heartBiomes() throws NoSuchFieldException, IllegalAccessException {
+        Server server = Bukkit.getServer();
+        CraftServer craftServer = (CraftServer) server;
+        DedicatedServer dedicatedServer = craftServer.getServer();
+        ResourceKey<BiomeBase> newKey = ResourceKey.a(IRegistry.aO, new MinecraftKey("test", "heartbiome"));
+
+        ResourceKey<BiomeBase> oldKey = ResourceKey.a(IRegistry.aO, new MinecraftKey("minecraft", "forest"));
+        IRegistryWritable<BiomeBase> registryWritable = dedicatedServer.getCustomRegistry().b(IRegistry.aO);
+        BiomeBase forestBiome = registryWritable.a(oldKey);
+
+        BiomeBase.a newBIome = new BiomeBase.a();
+        newBIome.a(forestBiome.t());
+        newBIome.a(forestBiome.c());
+
+       Field biomeSettingMobsField = BiomeBase.class.getDeclaredField("m");
+       biomeSettingMobsField.setAccessible(true);
+       BiomeSettingsMobs biomeSettingsMobs = (BiomeSettingsMobs) biomeSettingMobsField.get(forestBiome);
+       newBIome.a(biomeSettingsMobs);
+
+        Field biomeSettingGenField = BiomeBase.class.getDeclaredField("l");
+        biomeSettingGenField.setAccessible(true);
+        BiomeSettingsGeneration biomeSettingsGeneration = (BiomeSettingsGeneration) biomeSettingGenField.get(forestBiome);
+        newBIome.a(biomeSettingsGeneration);
+
+        newBIome.a(0.3f);
+        newBIome.b(0.05f);
+
+
+    };
+}

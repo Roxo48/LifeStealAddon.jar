@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="PluginsforPK">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../PluginsforPK/ProjectKorra-1.9.2-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../PluginsforPK/worldedit-bukkit-7.2.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../PluginsforPK/spigot-1.17.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../PluginsforPK/craftbukkit-1.17.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../PluginsforPK/spigot-1.17.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../PluginsforPK/craftbukkit-1.17.1.jar!/" />
+    </SOURCES>
+  </library>
+</component>
